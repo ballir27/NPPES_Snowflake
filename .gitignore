@@ -145,7 +145,8 @@ env.bak/
 venv.bak/
 logs/ 
 *.parquet
-
+*.duckdb
+*.db
 # Spyder project settings
 .spyderproject
 .spyproject
