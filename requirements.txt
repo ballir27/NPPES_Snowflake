@@ -8,4 +8,4 @@ dbt-duckdb
 numpy
 pandas
 fastexcel
-calamine
+# calamine
