@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: dim_provider_directory
+    description: "Dimension table of provider directory info"
+    columns:
+      - name: npi
+        description: "National Provider Identifier"
+
+      - name: provider_state_name
+        description: "State of provider"
+
+      - name: provider_postal_code
+        description: "Postal code of provider"
+
+
+  - name: fct_provider_density
+    description: "Fact table of providers per capita by zip/state"
+    columns:
+      - name: providers_per_10k_population
+        description: "Number of providers per 10,000 people"
+        
+      - name: provider_count
+        description: "Count of providers"
+
+
+  - name: fct_providers_by_geography
+    description: "Count of providers by state and county"
+    columns:
+      - name: provider_state_name
+        description: "State of provider"
+
+      - name: county
+        description: "County of provider"
+
+      - name: provider_count
+        description: "Number of distinct providers"
+
+
+  - name: fct_speciality_distribution
+    description: "Number of providers by specialty and state"
+    columns:
+      - name: specialty_classification
+        description: "Specialty classification of provider"
+
+      - name: provider_state_name
+
+      - name: provider_count
+
+
+  - name: fct_healthcare_gaps
+    description: "Areas with potential healthcare coverage gaps"
+    columns:
+      - name: state
+        description: "State"
+
+      - name: county
+        description: "County"
+
+      - name: gap_score
+        description: "Score indicating healthcare coverage gap"
+
