@@ -1,0 +1,4 @@
+select *
+from {{ ref('fct_provider_density') }}
+where total_population is null
+  and provider_count > 0

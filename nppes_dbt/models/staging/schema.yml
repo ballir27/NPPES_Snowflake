@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: nppes_raw
+    database: nppes
+    schema: main   
+    tables:
+      - name: api_data
+        description: "Raw data from NPPES API"
+      - name: npi_data
+        description: "Raw NPI data"
+      - name: nppes_sample
+        description: "Sample data from NPPES"
+      - name: nucc_taxonomy
+        description: "NUCC Taxonomy data"
+      - name: ssa_fips_state_county
+        description: "SSA FIPS State and County data"
+      - name: zip_data
+        description: "Zip Code data with population and other details"
