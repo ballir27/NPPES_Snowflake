@@ -1,0 +1,11 @@
+polars
+dotenv
+boto3
+duckdb
+pyarrow
+dbt-core
+dbt-duckdb
+numpy
+pandas
+fastexcel
+# calamine
