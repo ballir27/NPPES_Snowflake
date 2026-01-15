@@ -2,7 +2,7 @@ version: 2
 
 sources:
   - name: nppes_raw
-    database: nppes
+    #database: nppes
     schema: main   
     tables:
       - name: api_data
