@@ -36,7 +36,7 @@ jobs:
              outputs:
                 dev:
                   type: duckdb
-                  path: ../nppes.duckdb.db
+                  path: ../nppes.duckdb
                   threads: 1" > ~/.dbt/profiles.yml
 
       - name: Install dbt
