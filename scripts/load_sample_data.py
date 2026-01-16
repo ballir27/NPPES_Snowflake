@@ -21,7 +21,7 @@ for table, filename in tables.items():
     print(f"Loading {table} from {file_path}")
     conn.execute(f"""
         CREATE OR REPLACE TABLE main.{table} AS
-        SELECT * FROM read_csv_auto('{file_path}', header=true, quote='"',normalize_names = false)
+        SELECT * FROM read_csv_auto('{file_path}', header=true,ALL_VARCHAR=TRUE,,normalize_names = false ,quote='\"')
     """)
 
 conn.close()
