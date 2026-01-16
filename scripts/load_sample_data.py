@@ -1,21 +1,27 @@
 import duckdb
 import os
 
-conn = duckdb.connect("nppes.duckdb")
+# Connect to the DuckDB database (relative to nppes_dbt)
+conn = duckdb.connect("../nppes.duckdb")
+
+# Base path for sample data
+base_path = "../sample_data"
 
 tables = {
-    "api_data": "sample_data/api_data.csv",
-    "npi_data": "sample_data/npi_data.csv",
-    "nppes_sample": "sample_data/nppes_sample.csv",
-    "nucc_taxonomy": "sample_data/nucc_taxonomy.csv",
-    "ssa_fips_state_county": "sample_data/ssa_fips_state_county.csv",
-    "zip_data": "sample_data/zip_data.csv",
+    "api_data": "api_data.csv",
+    "npi_data": "npi_data.csv",
+    "nppes_sample": "nppes_sample.csv",
+    "nucc_taxonomy": "nucc_taxonomy.csv",
+    "ssa_fips_state_county": "ssa_fips_state_county.csv",
+    "zip_data": "zip_data.csv",
 }
 
-for table, path in tables.items():
+for table, filename in tables.items():
+    file_path = os.path.join(base_path, filename)
+    print(f"Loading {table} from {file_path}")
     conn.execute(f"""
         CREATE OR REPLACE TABLE main.{table} AS
-        SELECT * FROM read_csv_auto('{path}')
+        SELECT * FROM read_csv_auto('{file_path}')
     """)
 
 conn.close()
