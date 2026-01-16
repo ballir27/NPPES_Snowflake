@@ -3,7 +3,8 @@ import os
 import pandas as pd
 
 # Connect to the DuckDB database (relative to nppes_dbt)
-conn = duckdb.connect("../nppes.duckdb")
+#conn = duckdb.connect("../nppes.duckdb")
+conn = duckdb.connect("nppes.duckdb")
 
 # Base path for sample data
 base_path = "../sample_data"
