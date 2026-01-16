@@ -27,8 +27,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r ../requirements_dev.txt
+          pip install dbt-duckdb
 
-      - name: Setup dbt profiles
+
+
+      - name: Create dbt profiles
         run: |
           mkdir -p ~/.dbt
           echo "nppes_dbt:
@@ -39,14 +42,13 @@ jobs:
                   path: ../nppes.duckdb
                   threads: 1" > ~/.dbt/profiles.yml
 
-      - name: Install dbt
-        run: pip install dbt-duckdb
+      - name: Load sample data
+        run: python ../scripts/load_sample_data.py
 
       - name: dbt deps
         run: dbt deps
 
-      - name: dbt debug
-        run: dbt debug
+
 
       - name: dbt run
         run: dbt run

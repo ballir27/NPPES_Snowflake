@@ -1,0 +1,3 @@
+NPI,Entity_Type,Replacement_NPI,Employer_Identification_Number,Provider_Organization_Name,Provider_Last_Name,Provider_First_Name,Provider_Middle_Name,Provider_Gender_Code,Certificate_Date,Last_Update_Date,NPI_Deactivation_Date,Provider_Address_1,Provider_Address_2,Provider_City_Name,Provider_State_Name,Provider_Postal_Code,Provider_Country_Code,Provider_Telephone_Number,Provider_Fax_Number,Provider_Taxonomy_Code_1
+1234567890,1,,123456789,Health Org,,,F,2020-01-01,2024-01-01,,123 Main St,,Los Angeles,CA,90001,US,1234567890,,207Q00000X
+9876543210,1,,987654321,Wellness Org,,,M,2019-01-01,2024-01-01,,456 Park Ave,,New York,NY,10001,US,9876543210,,207Q00000X
