@@ -1,5 +1,6 @@
 import duckdb
 import os
+import pandas as pd
 
 # Connect to the DuckDB database (relative to nppes_dbt)
 conn = duckdb.connect("../nppes.duckdb")
@@ -16,12 +17,23 @@ tables = {
     "zip_data": "zip_data.csv",
 }
 
-for table, filename in tables.items():
-    file_path = os.path.join(base_path, filename)
-    print(f"Loading {table} from {file_path}")
-    conn.execute(f"""
-        CREATE OR REPLACE TABLE main.{table} AS
-        SELECT * FROM read_csv_auto('{file_path}', header=true,ALL_VARCHAR=TRUE,normalize_names = false ,quote='\"')
-    """)
+# for table, filename in tables.items():
+#     file_path = os.path.join(base_path, filename)
+#     print(f"Loading {table} from {file_path}")
+#     conn.execute(f"""
+#         CREATE OR REPLACE TABLE main.{table} AS
+#         SELECT * FROM read_csv_auto('{file_path}', header=true,ALL_VARCHAR=TRUE,normalize_names = false ,quote='\"')
+#     """)
+
+# conn.close()
+for table, path in tables.items():
+    df = pd.read_csv(path, dtype=str)
+    
+    # Only fix headers for npi_data and nppes_sample
+    if table in ["npi_data", "nppes_sample"]:
+        df.columns = [c.replace('"', '') for c in df.columns]
+    
+    conn.execute(f"CREATE OR REPLACE TABLE main.{table} AS SELECT * FROM df")
 
 conn.close()
+print("Sample data loaded successfully!")
