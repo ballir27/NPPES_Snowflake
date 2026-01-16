@@ -3,7 +3,7 @@ with source as(
 ),
 npi_cleaned as(
 select 
-    npi as NPI,
+    "NPI" as NPI,
     "Entity Type Code" as Entity_Type,
     "Replacement NPI" as Replacement_NPI,
     "Employer Identification Number (EIN)" as Employer_Identification_Number,
