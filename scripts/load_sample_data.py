@@ -10,7 +10,7 @@ base_path = "../sample_data"
 tables = {
     "api_data": "api_data.csv",
     "npi_data": "npi_data.csv",
-
+    "nppes_sample": "nppes_sample.csv",
     "nucc_taxonomy": "nucc_taxonomy.csv",
     "ssa_fips_state_county": "ssa_fips_state_county.csv",
     "zip_data": "zip_data.csv",
