@@ -26,7 +26,7 @@ select
     "Healthcare Provider Taxonomy Code_1" as Provider_Taxonomy_Code_1
 
 from source
-where npi is not null
+where NPI is not null
 )
 select NPI,
        Entity_Type,
