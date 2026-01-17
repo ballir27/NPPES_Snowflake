@@ -27,7 +27,7 @@ conn = duckdb.connect(DB_PATH)
 # 1️ Load tables with complex headers (FIX)
 for table, filename in STRICT_TABLES.items():
     file_path = os.path.join(BASE_PATH, filename)
-    print(f"Loading {table} (explicit CSV parsing)")
+    print(f"Loading {table} (robust CSV mode)")
     conn.execute(f"""
         CREATE OR REPLACE TABLE main.{table} AS
         SELECT *
@@ -38,7 +38,11 @@ for table, filename in STRICT_TABLES.items():
             quote='"',
             escape='"',
             normalize_names=true,
-            all_varchar=true
+            all_varchar=true,
+            strict_mode=false,
+            ignore_errors=true,
+            null_padding=true,
+            max_line_size=10000000
         )
     """)
 
