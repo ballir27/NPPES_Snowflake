@@ -37,7 +37,7 @@ for table, filename in STRICT_TABLES.items():
             delim=',',
             quote='"',
             escape='"',
-            normalize_names=true,
+
             all_varchar=true,
             strict_mode=false,
             ignore_errors=true,
