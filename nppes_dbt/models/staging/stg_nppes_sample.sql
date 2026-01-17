@@ -3,7 +3,8 @@ with source as(
 ),
 nppes_cleaned as(
 select 
-    npi as NPI,
+     
+    "NPI" as NPI,
     "Entity Type Code" as Entity_Type,
     "Replacement NPI" as Replacement_NPI,
     "Employer Identification Number (EIN)" as Employer_Identification_Number,
@@ -24,11 +25,10 @@ select
     "Provider Business Mailing Address Telephone Number" as Provider_Telephone_Number,
     "Provider Business Mailing Address Fax Number" as Provider_Fax_Number,
     "Healthcare Provider Taxonomy Code_1" as Provider_Taxonomy_Code_1
-
 from source
-where npi is not null
+where NPI is not null
 )
-select NPI,
+select  NPI,
        Entity_Type,
        Replacement_NPI,
        Employer_Identification_Number,
