@@ -4,7 +4,7 @@ with source as(
 nppes_cleaned as(
 select 
      
-    "NPI" as NPI,
+    NPI,
     "Entity Type Code" as Entity_Type,
     "Replacement NPI" as Replacement_NPI,
     "Employer Identification Number (EIN)" as Employer_Identification_Number,
