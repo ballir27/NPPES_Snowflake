@@ -2,10 +2,10 @@
 
 with provider_counts as (
     select
-        provider_postal_code as zip,
+        provider_postal_code_5 as zip,
         count(distinct npi) as provider_count
     from {{ ref('dim_provider_directory') }}
-    group by provider_postal_code
+    group by provider_postal_code_5
 ),
 
 population as (

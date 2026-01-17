@@ -13,7 +13,7 @@ providers_with_population as (
         d.npi,
         d.provider_state_name as state,
         d.county,
-        d.provider_postal_code as zip,
+        d.provider_postal_code_5 as zip,
         1 as provider_count
     from {{ ref('dim_provider_directory') }} d
 )

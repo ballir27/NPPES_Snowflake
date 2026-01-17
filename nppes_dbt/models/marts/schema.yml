@@ -6,6 +6,9 @@ models:
     columns:
       - name: npi
         description: "National Provider Identifier"
+        tests:
+          - not_null
+          - unique
 
       - name: provider_state_name
         description: "State of provider"
