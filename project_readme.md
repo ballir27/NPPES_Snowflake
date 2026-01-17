@@ -1,8 +1,8 @@
-Project Overview
+## Project Overview
 
 This project is a healthcare data pipeline that ingests large-scale provider and population data, cleans and transforms it, and generates analytics for health coverage, provider density, and specialty mix.
 
-Key Goals:
+## Key Goals:
 
 Efficient ingestion of CSV and Excel files (3 MB–10 GB+)
 
@@ -13,21 +13,21 @@ Generation of fact and dimension tables for analytics
 Automated data quality testing using dbt
 Architecture
 
-Pipeline Flow:
+## Pipeline Flow:
 
-Ingestion
+# Ingestion
 
 Polars (pl.read_excel()) for Excel files
 
 DuckDB (read_csv_auto()) for CSVs, supporting parallel execution for large files
 
-Storage
+# Storage
 
 S3 for raw, staged, and processed data
 
 Parquet format for downstream consumption
 
-Transformation
+# Transformation
 
 dbt Medallion Architecture (Bronze → Silver → Gold)
 
@@ -40,35 +40,8 @@ Provider density (providers per 10k population)
 Healthcare coverage gaps
 
 Specialty mix per region
-Architecture
 
-Pipeline Flow:
-
-Ingestion
-
-Polars (pl.read_excel()) for Excel files
-
-DuckDB (read_csv_auto()) for CSVs, supporting parallel execution for large files
-
-Storage
-
-S3 for raw, staged, and processed data
-
-Parquet format for downstream consumption
-
-Transformation
-
-dbt Medallion Architecture (Bronze → Silver → Gold)
-
-Deduplication, ZIP → county mapping, provider name standardization
-
-Analytics / Marts
-
-Provider density (providers per 10k population)
-
-Healthcare coverage gaps
-
-Specialty mix per region
+## Architecture
 
 Key Technical Challenges
 
@@ -100,7 +73,7 @@ Non-negative metrics: provider_count, providers_per_10k_population
 
 Failures catch missing or inconsistent data before it reaches production.
 
-Dependencies
+## Dependencies
 
 Python ≥3.10
 
@@ -114,7 +87,8 @@ Pandas (optional, for Excel handling)
 
 S3 (AWS CLI or boto3 for data storage)
 
-Setup & Usage
+## Setup & Usage
+
 Clone the repository
 Install dependencies
 Configure S3 & DuckDB
@@ -125,7 +99,9 @@ Configure DuckDB temp directory and memory settings
 
 Run the pipeline
 
-File Structure
+## File Structure
+
+```text
 ├── README.md
 ├── nppes_dbt
 │   ├── models
@@ -149,3 +125,4 @@ File Structure
 |
 ├── requirements.txt
 
+```
