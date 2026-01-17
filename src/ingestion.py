@@ -38,7 +38,7 @@ def ingestion_data_into_duckdb(aws_session):
     try:
         aws_credentials = aws_session.get_credentials().get_frozen_credentials()
         
-        with duckdb.connect("NPPES.duckdb") as duck_conn:  
+        with duckdb.connect("nppes.duckdb") as duck_conn:  
             # 1. Setup Extensions and S3 Auth
             duck_conn.execute("INSTALL aws; LOAD aws;")
             duck_conn.execute(f""" 

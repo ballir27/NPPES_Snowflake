@@ -41,7 +41,7 @@ jobs:
           pip install -r requirements_dev.txt
 
       - name: Install dbt
-        run: pip install dbt-duckdb==1.11.2
+        run: pip install dbt-duckdb
 
       - name: dbt deps
         run: dbt deps
