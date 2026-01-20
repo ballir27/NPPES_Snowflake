@@ -126,3 +126,10 @@ Run the pipeline
 ├── requirements.txt
 
 ```
+
+## References
+https://duckdb.org/docs/stable/guides/network_cloud_storage/s3_import
+https://duckdb.org/docs/stable/clients/python/data_ingestion
+https://duckdb.org/docs/stable/guides/performance/how_to_tune_workloads
+https://duckdb.org/docs/stable/configuration/overview
+https://duckdb.org/2024/07/09/memory-management

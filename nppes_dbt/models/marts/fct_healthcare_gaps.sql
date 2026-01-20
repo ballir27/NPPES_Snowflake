@@ -3,7 +3,7 @@
 with pop_by_zip as (
     select
         zip_code,
-        sum(Total_Population) as total_population
+        sum(CAST(Total_Population AS INTEGER)) as total_population
     from {{ ref('stg_api_data') }}
     group by zip_code
 ),

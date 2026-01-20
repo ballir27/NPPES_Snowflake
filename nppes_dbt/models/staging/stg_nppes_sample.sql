@@ -16,15 +16,15 @@ select
     "Certification Date" as Certificate_Date,
     "Last Update Date" as Last_Update_Date,
     "NPI Deactivation Date" as NPI_Deactivation_Date,
-    "Provider First Line Business Mailing Address" as Provider_Address_1,
-    "Provider Second Line Business Mailing Address" as Provider_Address_2,
-    "Provider Business Mailing Address City Name" as Provider_City_Name,
-    "Provider Business Mailing Address State Name" as Provider_State_Name,
-    "Provider Business Mailing Address Postal Code" as Provider_Postal_Code,
-    "Provider Business Mailing Address Country Code (If outside U.S.)" as Provider_Country_Code,
-    "Provider Business Mailing Address Telephone Number" as Provider_Telephone_Number,
-    "Provider Business Mailing Address Fax Number" as Provider_Fax_Number,
-    "Healthcare Provider Taxonomy Code_1" as Provider_Taxonomy_Code_1
+    "Provider First Line Business Practice Location Address" as Provider_Address_1,
+    "Provider Second Line Business Practice Location Address" as Provider_Address_2,
+    "Provider Business Practice Location Address City Name" as Provider_City_Name,
+    "Provider Business Practice Location Address State Name" as Provider_State_Name,
+    "Provider Business Practice Location Address Postal Code" as Provider_Postal_Code,
+    "Provider Business Practice Location Address Country Code (If outside U.S.)" as Provider_Country_Code,
+    "Provider Business Practice Location Address Telephone Number" as Provider_Telephone_Number,
+    "Provider Business Practice Location Address Fax Number" as Provider_Fax_Number,
+    "Healthcare Provider Taxonomy Code_1" as Provider_Taxonomy_Code_1,
 from source
 where NPI is not null
 )
