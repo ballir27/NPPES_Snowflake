@@ -33,7 +33,7 @@ select
     pc.county,
     sum(pop.total_population) as total_population,
     sum(pc.provider_count) as provider_count,
-    round(sum(pc.provider_count) * 10000.0 / nullif(sum(pop.total_population),0),2) as providers_per_10k_population
+    round(sum(pc.provider_count) * 10000.0 / nullif(sum(CAST(pop.total_population AS INTEGER)),0),2) as providers_per_10k_population
 from provider_counts pc
 left join pop_by_zip pop
     on pc.zip = pop.zip_code
