@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: nppes_raw
     #database: nppes
-    schema: main   
+    schema: raw  
     tables:
       - name: api_data
         description: "Raw data from NPPES API"

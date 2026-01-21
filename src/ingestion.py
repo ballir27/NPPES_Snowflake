@@ -74,6 +74,7 @@ def ingestion_data_into_duckdb(aws_session):
             }
 
             # 5. Main Ingestion Loop
+            duck_conn.execute("CREATE SCHEMA IF NOT EXISTS raw;")
             for table_name, file_info in files.items():
                 start_time = time.time()
                 s3_path = f"s3://{aws_bucket}/{aws_team_folder}/{file_info['path']}"
@@ -91,18 +92,19 @@ def ingestion_data_into_duckdb(aws_session):
                     if file_info["type"] == "csv" and large_file:
                         logger.info(f"Starting Large Ingestion: {table_name}...")
                         duck_conn.execute(f"""
-                            CREATE OR REPLACE TABLE {table_name} AS
+                            CREATE OR REPLACE TABLE raw.{table_name} AS
                             SELECT * FROM read_csv_auto('{s3_path}', header=TRUE, parallel=TRUE, ALL_VARCHAR=TRUE, QUOTE='\"', IGNORE_ERRORS=TRUE)
                         """)
                     elif file_info["type"] == "excel":
                         logger.info(f"Reading Excel: {table_name}...")
-                        response = aws_s3_client.get_object(Bucket=aws_bucket, Key=s3_key)
-                        excel_data = response['Body'].read()
-                        raw_data = pl.read_excel(BytesIO(excel_data))
-                        duck_conn.execute(f"CREATE OR REPLACE TABLE {table_name} AS SELECT * FROM raw_data")
+                        # response = aws_s3_client.get_object(Bucket=aws_bucket, Key=s3_key)
+                        # excel_data = response['Body'].read()
+                        # raw_data = pl.read_excel(BytesIO(excel_data))
+                        # duck_conn.execute(f"CREATE OR REPLACE TABLE {table_name} AS SELECT * FROM raw_data")
+                        duck_conn.execute(f"""CREATE OR REPLACE TABLE raw.{table_name} AS SELECT * FROM read_xlsx('{s3_path}')""")
                     elif file_info["type"] == "csv":
                         logger.info(f"Reading small CSV: {table_name}...")
-                        duck_conn.execute(f"CREATE OR REPLACE TABLE {table_name} AS SELECT * FROM read_csv_auto('{s3_path}')")
+                        duck_conn.execute(f"CREATE OR REPLACE TABLE raw.{table_name} AS SELECT * FROM read_csv_auto('{s3_path}')")
 
                     duration = round((time.time() - start_time) / 60, 2)
                     logger.info(f" {table_name} completed in {duration} minutes.")
