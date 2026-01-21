@@ -11,7 +11,7 @@ with provider_counts as (
 population as (
     select
         zip_code as zip,
-        total_population
+        cast(total_population as double) as total_population
     from {{ ref('stg_api_data') }}
 )
 
