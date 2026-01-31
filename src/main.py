@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 import boto3
 import duckdb
-
+import api_extract
 from local_logging import get_logger
 from ingestion import ingest_into_snowflake
 import upload
