@@ -4,7 +4,6 @@ import csv
 from dotenv import load_dotenv
 from importlib_metadata import files
 import polars as pl
-# import duckdb
 import snowflake.connector
 from adbc_driver_snowflake import dbapi
 import boto3
@@ -141,44 +140,5 @@ def ingest_into_snowflake(aws_session, snowflake_config):
     finally:
         curr.close()
         conn.close()
-
-        # 6. Main Ingestion Loop
-        # for table_name, file_info in files.items():
-        #     start_time = time.time()
-        #     s3_path = f"s3://{aws_bucket}/{aws_team_folder}/{file_info['path']}"
-        #     s3_key = f"{aws_team_folder}/{file_info['path']}"
-            
-        #     # Check if table already exists to skip re-downloading
-        #     table_exists = duck_conn.execute(f"SELECT count(*) FROM information_schema.tables WHERE table_name = '{table_name}'").fetchone()[0]
-        #     if table_exists > 0:
-        #         logger.info(f"Table {table_name} already exists. Skipping...")
-        #         continue
-            
-        #     try:
-        #         large_file = is_large_file(aws_session, aws_bucket, s3_key)
-                
-        #         if file_info["type"] == "csv" and large_file:
-        #             logger.info(f"Starting Large Ingestion: {table_name}...")
-        #             duck_conn.execute(f"""
-        #                 CREATE OR REPLACE TABLE raw.{table_name} AS
-        #                 SELECT * FROM read_csv_auto('{s3_path}', header=TRUE, parallel=TRUE, ALL_VARCHAR=TRUE, QUOTE='\"', IGNORE_ERRORS=TRUE)
-        #             """)
-        #         elif file_info["type"] == "excel":
-        #             logger.info(f"Reading Excel: {table_name}...")
-        #             # response = aws_s3_client.get_object(Bucket=aws_bucket, Key=s3_key)
-        #             # excel_data = response['Body'].read()
-        #             # raw_data = pl.read_excel(BytesIO(excel_data))
-        #             # duck_conn.execute(f"CREATE OR REPLACE TABLE {table_name} AS SELECT * FROM raw_data")
-        #             duck_conn.execute(f"""CREATE OR REPLACE TABLE raw.{table_name} AS SELECT * FROM read_xlsx('{s3_path}')""")
-        #         elif file_info["type"] == "csv":
-        #             logger.info(f"Reading small CSV: {table_name}...")
-        #             duck_conn.execute(f"CREATE OR REPLACE TABLE raw.{table_name} AS SELECT * FROM read_csv_auto('{s3_path}')")
-
-        #         duration = round((time.time() - start_time) / 60, 2)
-        #         logger.info(f" {table_name} completed in {duration} minutes.")
-
-        #     except Exception as path_err:
-        #         logger.error(f"Error processing {table_name}: {path_err}")
-        #         continue
 
         logger.info(" All data loaded successfully.")
