@@ -144,9 +144,7 @@ ENV/
 env.bak/
 venv.bak/
 logs/ 
-*.parquet
-*.duckdb
-*.db
+
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -208,3 +206,9 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+#Data files
+*.csv
+*.parquet
+*.duckdb
+*.db

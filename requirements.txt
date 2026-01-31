@@ -8,4 +8,5 @@ dbt-duckdb
 numpy
 pandas
 fastexcel
-# calamine
+snowflake-connector-python
+adbc-driver-snowflake
